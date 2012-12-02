@@ -37,5 +37,46 @@ public class Formula {
 		}
 		return -1;
 	}
+	
+	public void simplifyUnit(int literal) {
+		for (Clause c : clauses) {
+			c.removeLiteral(literal);
+		}
+	}
+	
+	public List<Clause> getClauses() {
+		return clauses;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((clauses == null) ? 0 : clauses.hashCode());
+		result = prime * result + m;
+		result = prime * result + n;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Formula other = (Formula) obj;
+		if (clauses == null) {
+			if (other.clauses != null)
+				return false;
+		} else if (!clauses.equals(other.clauses))
+			return false;
+		if (m != other.m)
+			return false;
+		if (n != other.n)
+			return false;
+		return true;
+	}
 
 }

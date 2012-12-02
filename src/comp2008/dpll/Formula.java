@@ -44,8 +44,16 @@ public class Formula {
 		}
 	}
 	
+	public void unitPropagation() {
+		
+	}
+	
 	public List<Clause> getClauses() {
 		return clauses;
+	}
+	
+	public boolean hasEmptyClause() {
+		return false;
 	}
 
 	@Override

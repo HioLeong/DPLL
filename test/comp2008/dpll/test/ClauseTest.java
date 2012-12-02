@@ -1,34 +1,64 @@
 package comp2008.dpll.test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
-public class ClauseTest {
+import comp2008.dpll.Clause;
 
+public class ClauseTest {
+	
+	Clause clause;
+
+	@Before
+	public void setUp() {
+		int[] a = {-1,2,-3};
+		
+		clause = makeClause(a);
+	}
+	
 	@Test
 	public void testContains() {
-		fail("Not yet implemented");
+		int expected = -1;
+		assertTrue(clause.contains(expected));
 	}
 
 	@Test
 	public void testRemoveLiteral() {
-		fail("Not yet implemented");
+		int[] a = {2,-3};
+		Clause expected = makeClause(a);
+		clause.removeLiteral(-1);
+		assertEquals(clause,expected);
 	}
 
 	@Test
 	public void testIsEmpty() {
-		fail("Not yet implemented");
+		assertFalse(clause.isEmpty());
+		Clause emptyClause = new Clause();
+		assertTrue(emptyClause.isEmpty());
 	}
 
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		assertEquals(3,clause.size());
 	}
 
 	@Test
 	public void testGetFirstLiteral() {
-		fail("Not yet implemented");
+		assertEquals(-1,clause.getFirstLiteral());
+	}
+	
+	private Clause makeClause(int[] literals) {
+		List<Integer> list = new ArrayList<Integer>();
+		for (int i : literals) {
+			list.add(i);
+		}
+		return new Clause(list);
 	}
 
 }

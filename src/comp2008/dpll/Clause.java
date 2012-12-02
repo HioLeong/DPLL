@@ -1,11 +1,16 @@
 package comp2008.dpll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Clause {
 
 	private List<Integer> literals;
 
+	public Clause() {
+		literals = new ArrayList<Integer>();
+	}
+	
 	public Clause(List<Integer> clauses) {
 		this.literals = clauses;
 	}

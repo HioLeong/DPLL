@@ -40,12 +40,12 @@ public class Formula {
 	
 	public void simplifyUnit(int literal) {
 		for (Clause c : clauses) {
-			c.removeLiteral(literal);
+			if (c.contains(literal)) {
+				c.removeAllLiterals();
+			} else if (c.contains(-literal)){
+				c.removeLiteral(-literal);
+			}
 		}
-	}
-	
-	public void unitPropagation() {
-		
 	}
 	
 	public List<Clause> getClauses() {

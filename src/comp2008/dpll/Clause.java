@@ -39,6 +39,10 @@ public class Clause {
 	public int size() {
 		return literals.size();
 	}
+	
+	public void removeAllLiterals() {
+		literals.clear();
+	}
 
 	/**
 	 * Method for retrieving the first literal, used when clause contains only

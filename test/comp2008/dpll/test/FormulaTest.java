@@ -19,7 +19,7 @@ public class FormulaTest {
 	public void setUp() throws Exception {
 		int[] a = { 1, 2, 3 };
 		int[] b = { -1, 2 };
-		int[] c = { 1 };
+		int[] c = { -1 };
 
 		Clause c1 = makeClause(a);
 		Clause c2 = makeClause(b);
@@ -34,15 +34,15 @@ public class FormulaTest {
 
 	@Test
 	public void testFindUnit() {
-		int expected = 1;
+		int expected = -1;
 		assertEquals(expected, formula.findUnit());
 	}
 
 	@Test
 	public void testSimplifyUnit() {
-		int[] a = { 1, 3 };
-		int[] b = { -1 };
-		int[] c = { 1 };
+		int[] a = {};
+		int[] b = {2};
+		int[] c = {};
 
 		Clause c1 = makeClause(a);
 		Clause c2 = makeClause(b);
@@ -53,18 +53,13 @@ public class FormulaTest {
 		expected.addClause(c2);
 		expected.addClause(c3);
 
-		formula.simplifyUnit(2);
+		formula.simplifyUnit(1);
 
 		assertTrue(formula.getClauses().equals(expected.getClauses()));
 
 	}
 
 	@Test
-	public void testUnitPropagation() {
-		
-	}
-	
-	@Test 
 	public void testHasEmptyClause() {
 		assertFalse(formula.hasEmptyClause());
 	}

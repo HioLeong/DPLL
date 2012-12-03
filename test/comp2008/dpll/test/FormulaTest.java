@@ -61,7 +61,12 @@ public class FormulaTest {
 
 	@Test
 	public void testUnitPropagation() {
-		fail("Not yet implemented.");
+		
+	}
+	
+	@Test 
+	public void testHasEmptyClause() {
+		assertFalse(formula.hasEmptyClause());
 	}
 
 	private Clause makeClause(int[] literals) {

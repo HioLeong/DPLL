@@ -53,6 +53,11 @@ public class Formula {
 	}
 	
 	public boolean hasEmptyClause() {
+		for (Clause c : clauses) {
+			if (c.isEmpty()) {
+				return true;
+			}
+		}
 		return false;
 	}
 

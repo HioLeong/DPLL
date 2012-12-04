@@ -9,7 +9,7 @@ public class Formula {
 	private int m; // number of clauses
 	private List<Clause> clauses = new ArrayList<Clause>();
 
-	public Formula() { 
+	public Formula() {
 		m = 0;
 		n = 0;
 	}
@@ -18,7 +18,7 @@ public class Formula {
 		this.n = n;
 		this.m = m;
 	}
-	
+
 	public void addClause(Clause clause) {
 		clauses.add(clause);
 	}
@@ -37,21 +37,22 @@ public class Formula {
 		}
 		return -1;
 	}
-	
+
 	public void simplifyUnit(int literal) {
-		for (Clause c : clauses) {
-			if (c.contains(literal)) {
-				c.removeAllLiterals();
-			} else if (c.contains(-literal)){
-				c.removeLiteral(-literal);
+		for (int i = 0; i < clauses.size(); i++) {
+			if (clauses.get(i).contains(literal)) {
+				clauses.remove(i);
+			}
+			if (clauses.get(i).contains(-literal)) {
+				clauses.get(i).removeLiteral(-literal);
 			}
 		}
 	}
-	
+
 	public List<Clause> getClauses() {
 		return clauses;
 	}
-	
+
 	public boolean hasEmptyClause() {
 		for (Clause c : clauses) {
 			if (c.isEmpty()) {

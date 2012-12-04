@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +17,7 @@ public class ClauseTest {
 	public void setUp() {
 		int[] a = {-1,2,-3};
 		
-		clause = makeClause(a);
+		clause = MockMethods.makeClause(a);
 	}
 	
 	@Test
@@ -32,7 +29,7 @@ public class ClauseTest {
 	@Test
 	public void testRemoveLiteral() {
 		int[] a = {2,-3};
-		Clause expected = makeClause(a);
+		Clause expected = MockMethods.makeClause(a);
 		clause.removeLiteral(-1);
 		assertEquals(clause,expected);
 	}
@@ -54,12 +51,6 @@ public class ClauseTest {
 		assertEquals(-1,clause.getFirstLiteral());
 	}
 	
-	private Clause makeClause(int[] literals) {
-		List<Integer> list = new ArrayList<Integer>();
-		for (int i : literals) {
-			list.add(i);
-		}
-		return new Clause(list);
-	}
+
 
 }

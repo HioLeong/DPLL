@@ -1,9 +1,8 @@
 package comp2008.dpll.test;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +20,9 @@ public class FormulaTest {
 		int[] b = { -1, 2 };
 		int[] c = { -1 };
 
-		Clause c1 = makeClause(a);
-		Clause c2 = makeClause(b);
-		Clause c3 = makeClause(c);
+		Clause c1 = MockMethods.makeClause(a);
+		Clause c2 = MockMethods.makeClause(b);
+		Clause c3 = MockMethods.makeClause(c);
 
 		formula = new Formula(3, 3);
 		formula.addClause(c1);
@@ -40,22 +39,19 @@ public class FormulaTest {
 
 	@Test
 	public void testSimplifyUnit() {
-		int[] a = {};
-		int[] b = {2};
-		int[] c = {};
+		int[] a = {2};
+		int[] b = {};
 
-		Clause c1 = makeClause(a);
-		Clause c2 = makeClause(b);
-		Clause c3 = makeClause(c);
+		Clause a1 = MockMethods.makeClause(a);
+		Clause b1 = MockMethods.makeClause(b);
 
 		Formula expected = new Formula(3, 3);
-		expected.addClause(c1);
-		expected.addClause(c2);
-		expected.addClause(c3);
+		expected.addClause(a1);
+		expected.addClause(b1);
 
 		formula.simplifyUnit(1);
 
-		assertTrue(formula.getClauses().equals(expected.getClauses()));
+		assertEquals(formula,expected);
 
 	}
 
@@ -64,12 +60,6 @@ public class FormulaTest {
 		assertFalse(formula.hasEmptyClause());
 	}
 
-	private Clause makeClause(int[] literals) {
-		List<Integer> list = new ArrayList<Integer>();
-		for (int i : literals) {
-			list.add(i);
-		}
-		return new Clause(list);
-	}
+
 
 }

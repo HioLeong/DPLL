@@ -60,6 +60,18 @@ public class FormulaTest {
 		assertFalse(formula.hasEmptyClause());
 	}
 
-
+	@Test
+	public void testClone() {
+		Formula formula = new Formula();
+		int[] a = {1,2,3};
+		formula.addClause(MockMethods.makeClause(a));
+		
+		Formula clone = new Formula(formula);
+		int[] b = {1,2};
+		clone.addClause(MockMethods.makeClause(b));
+		
+		assertTrue(formula.getClauses().size() == 1);
+		assertTrue(clone.getClauses().size() == 2);
+	}
 
 }

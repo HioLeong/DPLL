@@ -17,6 +17,7 @@ public class Methods {
 		while (formula.findUnit() != Formula.NO_SINGLE_UNIT) {
 			formula.simplifyUnit(formula.findUnit());
 		}
+		
 		return formula;
 	}
 
@@ -46,11 +47,14 @@ public class Methods {
 		Formula split = new Formula(formula);
 		List<Integer> pickedLiteralList = new ArrayList<Integer>();
 		pickedLiteralList.add(literal);
+		
+		
 		Clause clause = new Clause(pickedLiteralList);
 		split.addClause(clause);
 		if (!unitPropagation(split).hasEmptyClause()) {
 			return true;
 		}
+		
 		return false;
 	}
 }

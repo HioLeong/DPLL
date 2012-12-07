@@ -15,12 +15,12 @@ public class Clause {
 		this.literals = clauses;
 	}
 
-	public boolean contains(int n) {
-		return literals.contains(n);
+	public boolean hasLiteral(int literal) {
+		return literals.contains(literal);
 	}
 
 	public boolean removeLiteral(int n) {
-		if (contains(n)) {
+		if (hasLiteral(n)) {
 			literals.remove(literals.indexOf(n));
 			return true;
 		} else {
@@ -36,12 +36,8 @@ public class Clause {
 		}
 	}
 
-	public int size() {
+	public int length() {
 		return literals.size();
-	}
-	
-	public void removeAllLiterals() {
-		literals.clear();
 	}
 
 	/**

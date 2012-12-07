@@ -3,18 +3,24 @@ package comp2008.dpll;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class InputHandler {
 	
-	private Formula formula;
+	private static final int CLAUSE_TERMINATOR = 0;
 
 	public InputHandler(String fileName) {
+	}
+
+	public static Formula getFormula() {
+
+		Formula formula = null;
+		
 		try {
-			FileReader file = new FileReader(fileName);
-			BufferedReader reader = new BufferedReader(file);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			StringTokenizer tokenizer = new StringTokenizer(reader.readLine()
 					.substring(5));
 
@@ -26,7 +32,10 @@ public class InputHandler {
 				tokenizer = new StringTokenizer(reader.readLine());
 				List<Integer> literals = new ArrayList<Integer>();
 				while (tokenizer.hasMoreElements()) {
-					literals.add(getInteger(tokenizer));
+					int parsedInteger = getInteger(tokenizer);
+					if (parsedInteger != CLAUSE_TERMINATOR) {
+						literals.add(parsedInteger);
+					}
 				}
 				
 				Clause clause = new Clause(literals);
@@ -38,14 +47,12 @@ public class InputHandler {
 		} catch (Exception e) {
 			System.out.println("Invalid cnf definition.");
 		}
-	}
-
-	public Formula getFormula() {
-		// TODO: Change into static method.
+		
 		return formula;
+		
 	}
 	
-	public int getInteger(StringTokenizer tokenizer) {
+	private static int getInteger(StringTokenizer tokenizer) {
 		return Integer.parseInt(tokenizer.nextToken());
 	}
 

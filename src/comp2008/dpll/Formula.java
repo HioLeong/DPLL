@@ -1,6 +1,7 @@
 package comp2008.dpll;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 public class Formula {
-	
+
 	public final static int NO_SINGLE_UNIT = -1;
 
 	private int n; // number of distinct literals
@@ -51,7 +52,7 @@ public class Formula {
 	 */
 	public int findUnit() {
 		for (Clause c : clauses) {
-			if (c.size() == 1) {
+			if (c.length() == 1) {
 				return c.getFirstLiteral();
 			}
 		}
@@ -59,16 +60,19 @@ public class Formula {
 	}
 
 	public void simplifyUnit(int literal) {
-		for (int i = 0; i < clauses.size(); i++) {
-			if (clauses.get(i).contains(literal)) {
-				clauses.remove(i);
-				return;
+
+		Iterator<Clause> clausesIterator = clauses.iterator();
+		while (clausesIterator.hasNext()) {
+			Clause nextClause = clausesIterator.next();
+			if (nextClause.hasLiteral(literal)) {
+				clausesIterator.remove();
 			}
-			if (clauses.get(i).contains(-literal)) {
-				clauses.get(i).removeLiteral(-literal);
-				return;
+
+			if (nextClause.hasLiteral(-literal)) {
+				nextClause.removeLiteral(-literal);
 			}
 		}
+
 	}
 
 	public List<Clause> getClauses() {
@@ -91,6 +95,23 @@ public class Formula {
 	 */
 	public int pickLiteral() {
 		return clauses.get(0).getFirstLiteral();
+	}
+
+	/**
+	 * Prints the literals in each of the clauses. (For testing).
+	 * 
+	 */
+	public void printAllClauses() {
+		
+		System.out.println();
+		
+		for (Clause clause : getClauses()) {
+			System.out.print("Clause: ");
+			for (int literal : clause.getLiterals()) {
+				System.out.print(literal + "; ");
+			}
+			System.out.println();
+		}
 	}
 
 	@Override

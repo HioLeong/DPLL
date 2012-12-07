@@ -17,13 +17,13 @@ public class MethodTest {
 	public void testUnitPropagation() {
 		
 		Formula formula = new Formula();
-		int[] a = {1,-2,-3};
-		int[] b = {2};
-		int[] c = {-2};
+		int[] clause1 = {1,-2,-3};
+		int[] clause2 = {2};
+		int[] clause3 = {-2};
 		
-		formula.addClause(MockMethods.makeClause(a));
-		formula.addClause(MockMethods.makeClause(b));
-		formula.addClause(MockMethods.makeClause(c));
+		formula.addClause(MockMethods.makeClause(clause1));
+		formula.addClause(MockMethods.makeClause(clause2));
+		formula.addClause(MockMethods.makeClause(clause3));
 		
 		Formula expected = new Formula();
 		int[] a1 = {1,-3};
@@ -53,13 +53,27 @@ public class MethodTest {
 	
 	@Test
 	public void testSplitting() {
+		
 		Formula formula = new Formula();
-		int[] a = {1,2};
-		int[] b = {-2};
-		formula.addClause(MockMethods.makeClause(a));
-		formula.addClause(MockMethods.makeClause(b));
+		int[] clause1 = {1, -3};
+		int[] clause2 = {};
+		formula.addClause(MockMethods.makeClause(clause1));
+		formula.addClause(MockMethods.makeClause(clause2));
 		
 		assertTrue(Methods.splitting(formula));
+	}
+	
+	@Test
+	public void testDPLL() {
+		Formula formula = new Formula();
+		int[] clause1 = {1,-2,-3};
+		int[] clause2 = {2};
+		int[] clause3 = {-2};
+		formula.addClause(MockMethods.makeClause(clause1));
+		formula.addClause(MockMethods.makeClause(clause2));
+		formula.addClause(MockMethods.makeClause(clause3));
+		
+		assertFalse(Methods.DPLL(formula));
 	}
 
 }

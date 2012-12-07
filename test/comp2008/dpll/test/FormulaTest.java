@@ -39,19 +39,22 @@ public class FormulaTest {
 
 	@Test
 	public void testSimplifyUnit() {
+		
 		int[] a = {2};
 		int[] b = {};
 
-		Clause a1 = MockMethods.makeClause(a);
-		Clause b1 = MockMethods.makeClause(b);
+		Clause clause1 = MockMethods.makeClause(a);
+		Clause clause2 = MockMethods.makeClause(b);
 
-		Formula expected = new Formula(3, 3);
-		expected.addClause(a1);
-		expected.addClause(b1);
-
+		Formula expected = new Formula();
+		expected.addClause(clause1);
+		expected.addClause(clause2);
+		
 		formula.simplifyUnit(1);
-
-		assertEquals(formula,expected);
+		
+		formula.printAllClauses();
+		
+		assertTrue(formula.getClauses().equals(expected.getClauses()));
 
 	}
 

@@ -23,7 +23,7 @@ public class ClauseTest {
 	@Test
 	public void testContains() {
 		int expected = -1;
-		assertTrue(clause.contains(expected));
+		assertTrue(clause.hasLiteral(expected));
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class ClauseTest {
 
 	@Test
 	public void testSize() {
-		assertEquals(3,clause.size());
+		assertEquals(3,clause.length());
 	}
 
 	@Test

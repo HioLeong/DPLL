@@ -56,9 +56,7 @@ public class MethodTest {
 		
 		Formula formula = new Formula();
 		int[] clause1 = {1, -3};
-		int[] clause2 = {};
 		formula.addClause(MockMethods.makeClause(clause1));
-		formula.addClause(MockMethods.makeClause(clause2));
 		
 		assertTrue(Methods.splitting(formula));
 	}

@@ -51,6 +51,7 @@ public class Formula {
 	 * @return the unit, or -1 if not found.
 	 */
 	public int findUnit() {
+		
 		for (Clause c : clauses) {
 			if (c.length() == 1) {
 				return c.getFirstLiteral();
@@ -112,6 +113,10 @@ public class Formula {
 			}
 			System.out.println();
 		}
+	}
+	
+	public int getClausesSize() {
+		return clauses.size();
 	}
 
 	@Override

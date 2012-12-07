@@ -22,9 +22,17 @@ public class Methods {
 	}
 
 	public static boolean DPLL(Formula formula) {
-		if (unitPropagation(formula).hasEmptyClause()) {
+		
+		Formula propagatedFormula = new Formula(Methods.unitPropagation(formula));
+		
+		if (propagatedFormula.getClausesSize() == 0) {
+			return true;
+		}
+		
+		if (propagatedFormula.hasEmptyClause()) {
 			return false;
 		}
+		
 		return splitting(formula);
 	}
 

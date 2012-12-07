@@ -6,8 +6,6 @@ public class Main {
 		
 		Formula formula = InputHandler.getFormula();
 		
-		formula.printAllClauses();
-		
 		if (Methods.DPLL(formula)) {
 			System.out.println("Satisfiable");
 		} else {
